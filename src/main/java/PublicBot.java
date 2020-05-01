@@ -21,6 +21,7 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import java.util.Scanner;
 
 public class PublicBot extends ListenerAdapter
 {
@@ -88,8 +89,14 @@ public class PublicBot extends ListenerAdapter
 
     public static void main(String[] a) throws LoginException
     {
+        File fi=new File(System.getProperty("user.dir") + File.separatorChar + "tokens.txt");
+        String grabbedToken="";
+        try {
+            Scanner sc=new Scanner(fi);
+            grabbedToken=sc.nextLine();
+        } catch (Exception err) {}
         JDABuilder builder = new JDABuilder(AccountType.BOT);
-        String token = "NjQzNjEyNDE3Njk1Mjg1MjUz.XcoA6A.YWXu-WFTEiwTMzEf-x6ewgBFCT8";
+        String token = grabbedToken;
         builder.setToken(token);
         builder.setGame(Game.watching("for -rater:help"));
         Bot bot = new Bot();
